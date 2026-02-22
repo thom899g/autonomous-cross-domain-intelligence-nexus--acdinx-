@@ -1,0 +1,33 @@
+# ACDINX Configuration
+version: "1.0.0"
+system:
+  name: "Autonomous Cross-Domain Intelligence Nexus"
+  log_level: "INFO"
+  max_retries: 3
+  retry_delay_seconds: 5
+
+firebase:
+  project_id: "${FIREBASE_PROJECT_ID}"
+  service_account_key_path: "./firebase-service-account.json"
+  collections:
+    agents_state: "acdinx_agents_state"
+    cross_domain_insights: "cross_domain_insights"
+    system_metrics: "system_metrics"
+
+agents:
+  master:
+    polling_interval: 30
+    health_check_timeout: 60
+  domain:
+    max_concurrent_tasks: 5
+    task_timeout: 300
+
+cross_domain:
+  similarity_threshold: 0.7
+  insight_expiry_days: 30
+  max_insights_per_domain: 1000
+
+monitoring:
+  metrics_collection_interval: 60
+  alert_on_error_rate: 0.05
+  performance_threshold_ms: 1000
